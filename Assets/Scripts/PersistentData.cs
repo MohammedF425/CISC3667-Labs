@@ -23,6 +23,7 @@ public class PersistentData : MonoBehaviour
     {
         playerName = "";
         score = 0;
+        SettingsMenu.Instance.easy();
     }
 
     // Update is called once per frame

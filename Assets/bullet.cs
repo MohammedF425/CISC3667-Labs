@@ -33,20 +33,19 @@ public class bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other){
         if(other.gameObject.tag=="Ballon"){
+            PersistentData.Instance.AddToScore(10-other.transform.localScale.x*5);
             popSource.Play();
-            //Destroy(other.gameObject);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            scoreManager.AddPoints(10-other.transform.localScale.x*5);
             Debug.Log("Balloon destoryed");
 
         }
         if(other.gameObject.tag=="Obstacle"){
+            PersistentData.Instance.AddToScore(-2);
             popSource.Play();
             if(SettingsMenu.Instance.isHard()){
                  Destroy(gameObject);
             }
             Debug.Log("Bird!!");
-            scoreManager.AddPoints(-2);
 
         }
     }

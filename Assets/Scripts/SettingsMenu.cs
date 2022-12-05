@@ -18,6 +18,9 @@ public class SettingsMenu : MonoBehaviour
             Instance=this;
         }
     }
+    void Start(){
+        hard =false;
+    }
     public void MuteToggle(bool muted){
         if(muted){
             AudioListener.pause = true;

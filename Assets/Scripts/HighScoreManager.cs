@@ -23,14 +23,6 @@ public class HighScoreManager : MonoBehaviour
         currentName.text = playerName;
         currentScore.text = playerScore.ToString("0.00");
         SaveHighScores();
-
-        for (int i = 0; i < 5; i++)
-        {
-            int j= i+1;
-            Debug.Log(j + " " + PlayerPrefs.GetString(player + j));
-            Debug.Log(j + " " + PlayerPrefs.GetFloat(score + j));
-        }
-
         ShowHighScores();
     }
 
@@ -45,17 +37,15 @@ public class HighScoreManager : MonoBehaviour
 
     public void SaveHighScores(){
         for (int i = 1; i <= 5; i++){
-            Debug.Log("Level qwe");
+            Debug.Log(i + " " + PlayerPrefs.GetString(player + i));
+            Debug.Log(i + " " + PlayerPrefs.GetFloat(score + i));
+            
             string currentNameKey = player + i;
             string currentScoreKey = score + i;
 
             if (PlayerPrefs.HasKey(currentScoreKey)){
-                Debug.Log("Level qwe");
-
                 float currentScore = PlayerPrefs.GetFloat(currentScoreKey);
                 if (playerScore > currentScore){
-                    Debug.Log("Level qwe");
-
                     float tempScore = currentScore;
                     string tempName = PlayerPrefs.GetString(currentNameKey);
                     PlayerPrefs.SetString(currentNameKey, playerName);
@@ -67,10 +57,10 @@ public class HighScoreManager : MonoBehaviour
             else{
                 PlayerPrefs.SetString(currentNameKey, playerName);
                 PlayerPrefs.SetFloat(currentScoreKey, playerScore);
+                return;
+                
             }
-            int j= i+1;
-            Debug.Log(j + " " + PlayerPrefs.GetString(player + j));
-            Debug.Log(j + " " + PlayerPrefs.GetFloat(score + j));
+
         }
     }
 }
